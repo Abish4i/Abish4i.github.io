@@ -72,11 +72,11 @@
                     const el = document.createElement('div');
                     el.className = 'project card';
                     el.innerHTML = `
-            <div class="left">
+            <div>
               <h3 title="${escapeHtml(repo.name)}">${escapeHtml(repo.name)}</h3>
               <p>${escapeHtml(repo.description || repo.language || '')}</p>
             </div>
-            <div style="text-align:right;">
+            <div class="buttons" style="margin-top: 1rem;">
               <a class="btn" href="${repo.html_url}" target="_blank" rel="noopener">View Project</a>
             </div>
           `;
