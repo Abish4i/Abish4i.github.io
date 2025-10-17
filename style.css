@@ -19,6 +19,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.container {
+  position: relative;
+}
+
 .topright {
   position: absolute;
   top: 8px;
