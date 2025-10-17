@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Portfolio of Abish4i — projects, contact and links." />
+    <meta name="author" content="Abish4i" />
+    <title>Abish4i — Portfolio</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="wrap" role="main">
+        <header>
+            <a href="/" class="logo">
+                <div class="avatar" aria-hidden="true">A</div>
+                <div>
+                    <h1>Abish4i</h1>
+                    <p class="lead">Developer, tinkerer, and lifelong learner.</p>
+                </div>
+            </a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="portfolio.html" class="active">Portfolio</a>
+                <a href="resume.html">Resume</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <div id="projects">
+            <h2 style="margin:0 0 18px 0;">Latest projects</h2>
+            <div class="projects-list" id="repos">
+                <div class="muted">Loading repositories…</div>
+            </div>
+            <p class="note">Repos shown are fetched from GitHub's public API. If you don't see anything, GitHub API
+                rate limits may be in effect.</p>
+        </div>
+
+        <footer>
+            <div>© <span id="year"></span> Abish4i. Built with HTML, CSS and a little JS.</div>
+        </footer>
+    </main>
+
+    <script>
+        // set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Fetch public repos for the user and render a simple list
+        (async function loadRepos() {
+            const container = document.getElementById('repos');
+            const user = 'Abish4i';
+            const api = `https://api.github.com/users/${user}/repos?sort=updated&per_page=12`;
+            try {
+                const r = await fetch(api, {
+                    headers: {
+                        accept: 'application/vnd.github.v3+json'
+                    }
+                });
+                if (!r.ok) throw new Error('GitHub API error: ' + r.status);
+                const repos = await r.json();
+                if (!Array.isArray(repos) || repos.length === 0) {
+                    container.innerHTML = '<div class="muted">No public repositories found.</div>';
+                    return;
+                }
+                container.innerHTML = '';
+                repos.forEach(repo => {
+                    const el = document.createElement('div');
+                    el.className = 'project card';
+                    el.innerHTML = `
+            <div class="left">
+              <h3 title="${escapeHtml(repo.name)}">${escapeHtml(repo.name)}</h3>
+              <p>${escapeHtml(repo.description || repo.language || '')}</p>
+            </div>
+            <div style="text-align:right;">
+              <a class="btn" href="${repo.html_url}" target="_blank" rel="noopener">View Project</a>
+            </div>
+          `;
+                    container.appendChild(el);
+                });
+            } catch (err) {
+                console.warn(err);
+                container.innerHTML =
+                    '<div class="muted">Could not load repositories. Check browser console for details.</div>';
+            }
+        })();
+
+        // escape helpers
+        function escapeHtml(s) {
+            return String(s).replace(/[&<>"']/g, function (m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                } [m];
+            });
+        }
+    </script>
+</body>
+
+</html>
