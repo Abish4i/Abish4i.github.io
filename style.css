@@ -19,6 +19,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 20px;
+}
+
 .wrap {
     max-width: 980px;
     margin: 48px auto;
