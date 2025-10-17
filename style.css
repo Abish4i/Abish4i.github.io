@@ -260,3 +260,85 @@ label {
     font-size: 13px;
     margin-top: 8px;
 }
+
+/* Resume page specific styles */
+.resume-header {
+    position: relative;
+    padding-bottom: 18px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--glass);
+}
+
+.resume-photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.5);
+    border: 1px solid var(--glass);
+}
+
+.resume-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resume-container h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.resume-container p {
+    color: var(--muted);
+}
+
+.resume-section {
+    margin-bottom: 22px;
+}
+
+.resume-section h2 {
+    font-size: 18px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--glass);
+    padding-bottom: 8px;
+}
+
+.skills-categories > div {
+    margin-bottom: 8px;
+}
+
+.resume-page .card {
+    padding: 28px;
+}
+
+.resume-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resume-section li {
+    margin-bottom: 12px;
+}
+
+.resume-section strong {
+    color: #e6eef6;
+}
+
+.resume-section span {
+    color: var(--muted);
+}
+
+.resume-section a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.resume-section a:hover {
+    text-decoration: underline;
+}
