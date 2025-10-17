@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Resume of Abish4i — projects, contact and links." />
+    <meta name="author" content="Abish4i" />
+    <title>Abish4i — Resume</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="wrap" role="main">
+        <header>
+            <a href="/" class="logo">
+                <div class="avatar" aria-hidden="true">A</div>
+                <div>
+                    <h1>Abish4i</h1>
+                    <p class="lead">Developer, tinkerer, and lifelong learner.</p>
+                </div>
+            </a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="resume.html" class="active">Resume</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <section class="card">
+            <h2 style="margin:0 0 18px 0;">Resume</h2>
+
+            <div class="grid" style="gap: 28px;">
+                <div>
+                    <h3 style="margin-top:0;">Experience</h3>
+                    <div class="job">
+                        <h4 style="margin:0;">Software Engineer</h4>
+                        <p class="muted" style="margin:4px 0;">Big Tech Inc. | 2022–Present</p>
+                        <ul class="muted">
+                            <li>Worked on the design and development of scalable web applications.</li>
+                            <li>Collaborated with cross-functional teams to deliver high-quality software.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 style="margin-top:0;">Education</h3>
+                    <div class="job">
+                        <h4 style="margin:0;">B.S. in Computer Science</h4>
+                        <p class="muted" style="margin:4px 0;">State University | 2018–2022</p>
+                    </div>
+
+                    <h3 style="margin-top:18px;">Skills</h3>
+                    <div class="socials">
+                        <span class="chip">JavaScript</span>
+                        <span class="chip">React</span>
+                        <span class="chip">Node.js</span>
+                        <span class="chip">HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div>© <span id="year"></span> Abish4i. Built with HTML, CSS and a little JS.</div>
+        </footer>
+    </main>
+
+    <script>
+        // set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

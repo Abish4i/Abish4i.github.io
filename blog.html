@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Blog of Abish4i — projects, contact and links." />
+    <meta name="author" content="Abish4i" />
+    <title>Abish4i — Blog</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="wrap" role="main">
+        <header>
+            <a href="/" class="logo">
+                <div class="avatar" aria-hidden="true">A</div>
+                <div>
+                    <h1>Abish4i</h1>
+                    <p class="lead">Developer, tinkerer, and lifelong learner.</p>
+                </div>
+            </a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="resume.html">Resume</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </header>
+
+        <section>
+            <h2 style="margin:0 0 18px 0;">Blog</h2>
+
+            <div class="projects-list">
+                <a href="#" class="project card" style="text-decoration:none; color:inherit;">
+                    <div class="left">
+                        <h3>My First Blog Post</h3>
+                        <p class="muted">An introduction to my new blog.</p>
+                    </div>
+                    <div style="text-align:right;">
+                        <span class="chip">Read More</span>
+                    </div>
+                </a>
+                <a href="#" class="project card" style="text-decoration:none; color:inherit;">
+                    <div class="left">
+                        <h3>Building a Static Site</h3>
+                        <p class="muted">How I built this website from scratch.</p>
+                    </div>
+                    <div style="text-align:right;">
+                        <span class="chip">Read More</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <div>© <span id="year"></span> Abish4i. Built with HTML, CSS and a little JS.</div>
+        </footer>
+    </main>
+
+    <script>
+        // set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

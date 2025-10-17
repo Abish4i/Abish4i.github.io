@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="Contact Abish4i — projects, contact and links." />
+    <meta name="author" content="Abish4i" />
+    <title>Abish4i — Contact</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="wrap" role="main">
+        <header>
+            <a href="/" class="logo">
+                <div class="avatar" aria-hidden="true">A</div>
+                <div>
+                    <h1>Abish4i</h1>
+                    <p class="lead">Developer, tinkerer, and lifelong learner.</p>
+                </div>
+            </a>
+            <nav>
+                <a href="/">Home</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="resume.html">Resume</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+        </header>
+
+        <aside class="card" id="contact" aria-labelledby="contact-heading">
+            <h2 id="contact-heading" style="margin:0 0 8px 0;">Contact</h2>
+            <p class="muted">Want to collaborate or ask a question? Send a quick message.</p>
+
+            <form id="contactForm" style="margin-top:12px;" action="mailto:hello@abish.example" method="GET"
+                onsubmit="return prepareMailto(event)">
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text" placeholder="Jane Doe" required>
+
+                <label for="email">Your email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Brief message…" required></textarea>
+
+                <div style="margin-top:10px; display:flex; gap:8px;">
+                    <button class="btn" type="submit" style="cursor:pointer;">Send</button>
+                    <a class="btn secondary" href="https://github.com/Abish4i" target="_blank" rel="noopener">GitHub
+                        profile</a>
+                </div>
+            </form>
+        </aside>
+
+        <footer>
+            <div>© <span id="year"></span> Abish4i. Built with HTML, CSS and a little JS.</div>
+        </footer>
+    </main>
+
+    <script>
+        // set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Prepare mailto from form (simple, uses GET to construct)
+        function prepareMailto(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            const subject = encodeURIComponent(`Website message from ${name}`);
+            const body = encodeURIComponent(
+                `From: ${name} <${email}>\n\n${message}\n\n— sent from abish4i.github.io`);
+            const mailto = `mailto:hello@abish.example?subject=${subject}&body=${body}`;
+
+            // open mail client
+            window.location.href = mailto;
+            return false;
+        }
+    </script>
+</body>
+
+</html>
