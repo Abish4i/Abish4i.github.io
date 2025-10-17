@@ -49,18 +49,22 @@
         // set year
         document.getElementById('year').textContent = new Date().getFullYear();
 
+        // CONFIG
+        const GITHUB_USER = 'Abish4i';
+
         // Fetch public repos for the user and render a simple list
         (async function loadRepos() {
             const container = document.getElementById('repos');
-            const user = 'Abish4i';
-            const api = `https://api.github.com/users/${user}/repos?sort=updated&per_page=12`;
+            const api = `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=12`;
             try {
                 const r = await fetch(api, {
                     headers: {
                         accept: 'application/vnd.github.v3+json'
                     }
                 });
-                if (!r.ok) throw new Error('GitHub API error: ' + r.status);
+                if (!r.ok) {
+                    throw new Error(`GitHub API error: ${r.status} ${r.statusText}. Please try again later.`);
+                }
                 const repos = await r.json();
                 if (!Array.isArray(repos) || repos.length === 0) {
                     container.innerHTML = '<div class="muted">No public repositories found.</div>';
@@ -84,7 +88,7 @@
             } catch (err) {
                 console.warn(err);
                 container.innerHTML =
-                    '<div class="muted">Could not load repositories. Check browser console for details.</div>';
+                    `<div class="muted">Could not load repositories. ${err.message}</div>`;
             }
         })();
 
