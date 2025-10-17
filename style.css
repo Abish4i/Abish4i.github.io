@@ -267,17 +267,11 @@ label {
     padding-bottom: 18px;
     margin-bottom: 22px;
     border-bottom: 1px solid var(--glass);
-    display: flex;
-    align-items: center;
-}
-
-.resume-header-text {
-    margin-right: 110px; /* space for the photo */
 }
 
 .resume-photo {
     position: absolute;
-    top: -10px;
+    top: 0;
     right: 0;
     width: 80px;
     height: 80px;
