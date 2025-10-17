@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Personal site and portfolio of Abish4i — projects, contact and links." />
+  <meta name="author" content="Abish4i" />
+  <title>Abish4i — Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>">
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#6ee7b7;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      color-scheme: dark;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,#071026 0%,var(--bg) 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .wrap{
+      max-width:980px;
+      margin:48px auto;
+      padding:28px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      margin-bottom:22px;
+    }
+    .avatar{
+      width:84px;
+      height:84px;
+      border-radius:18px;
+      background:linear-gradient(135deg,var(--accent),#60a5fa);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      font-size:30px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.6), inset 0 -8px 24px rgba(255,255,255,0.03);
+    }
+    h1{ margin:0; font-size:22px; }
+    p.lead{ margin:6px 0 0; color:var(--muted); font-size:15px; }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:18px;
+      margin-top:18px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 6px 20px rgba(2,6,23,0.5);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .muted{ color:var(--muted); font-size:14px; }
+    .buttons{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+    .btn{
+      background:var(--glass);
+      color:var(--accent);
+      padding:8px 12px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .btn.secondary{
+      color:var(--muted); border-style:dashed;
+    }
+    .projects-list{ display:flex; flex-direction:column; gap:10px; margin-top:10px; }
+    .project{
+      background: linear-gradient(90deg, rgba(255,255,255,0.015), transparent);
+      padding:12px;
+      border-radius:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:center;
+    }
+    .project .left{ overflow:hidden; }
+    .project h3{ margin:0; font-size:15px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; }
+    .project p{ margin:4px 0 0; color:var(--muted); font-size:13px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; }
+    footer{ text-align:center; margin-top:22px; color:var(--muted); font-size:13px; padding:22px 0 40px; }
+    .socials{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+    .chip{ background:rgba(255,255,255,0.02); padding:6px 10px; border-radius:999px; font-size:13px; color:var(--muted); border:1px solid rgba(255,255,255,0.02); text-decoration:none; }
+    input, textarea{ width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); background:transparent; color:inherit; font-size:14px; resize:vertical; }
+    label{ font-size:13px; color:var(--muted); display:block; margin-bottom:6px; }
+    .contact-grid{ display:grid; gap:10px; grid-template-columns:1fr; }
+    @media (max-width:880px){
+      .grid{ grid-template-columns: 1fr; }
+      header{ gap:12px; }
+      .avatar{ width:68px; height:68px; font-size:24px; border-radius:12px; }
+    }
+    .note{ color:var(--muted); font-size:13px; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <header>
+      <div class="avatar" aria-hidden="true">A</div>
+      <div>
+        <h1>Hi — I'm Abish</h1>
+        <p class="lead">Developer, tinkerer, and lifelong learner. I build small tools, experiments and open-source projects.</p>
+        <div class="socials" aria-label="quick links">
+          <a class="chip" href="https://github.com/Abish4i" target="_blank" rel="noopener">GitHub</a>
+          <a class="chip" href="mailto:hello@abish.example" target="_blank" rel="noopener">Email</a>
+          <a class="chip" href="#projects">Projects</a>
+          <a class="chip" href="#contact">Contact</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="about-heading">
+        <h2 id="about-heading" style="margin:0 0 8px 0;">About</h2>
+        <p class="muted">Welcome to my GitHub Pages site. Below you'll find recent projects fetched live from my GitHub profile, a short bio, and a simple contact form (submits via mailto).</p>
+
+        <div style="margin-top:14px;">
+          <h3 style="margin:0 0 8px 0;">What I work on</h3>
+          <p class="muted">Web tools, automation, and small utilities. I like shipping useful things and learning new patterns.</p>
+
+          <div class="buttons" role="navigation" aria-label="primary actions">
+            <a class="btn" href="https://github.com/Abish4i" target="_blank" rel="noopener">View GitHub</a>
+            <a class="btn secondary" href="#projects">See projects</a>
+            <a class="btn secondary" href="#contact">Get in touch</a>
+          </div>
+        </div>
+
+        <div id="projects" style="margin-top:18px;">
+          <h3 style="margin:0 0 8px 0;">Latest projects</h3>
+          <div class="projects-list" id="repos">
+            <div class="muted">Loading repositories…</div>
+          </div>
+          <p class="note">Repos shown are fetched from GitHub's public API. If you don't see anything, GitHub API rate limits may be in effect.</p>
+        </div>
+
+      </section>
+
+      <aside class="card" id="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" style="margin:0 0 8px 0;">Contact</h2>
+        <p class="muted">Want to collaborate or ask a question? Send a quick message.</p>
+
+        <form id="contactForm" style="margin-top:12px;" action="mailto:hello@abish.example" method="GET" onsubmit="return prepareMailto(event)">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" placeholder="Jane Doe" required>
+
+          <label for="email">Your email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Brief message…" required></textarea>
+
+          <div style="margin-top:10px; display:flex; gap:8px;">
+            <button class="btn" type="submit" style="cursor:pointer;">Send</button>
+            <a class="btn secondary" href="https://github.com/Abish4i" target="_blank" rel="noopener">GitHub profile</a>
+          </div>
+        </form>
+
+        <div style="margin-top:18px;">
+          <h3 style="margin:0 0 8px 0;">Quick info</h3>
+          <p class="muted" style="margin:0;">Location: Remote</p>
+          <p class="muted" style="margin:6px 0 0 0;">Availability: Open to opportunities</p>
+        </div>
+      </aside>
+    </div>
+
+    <footer>
+      <div>© <span id="year"></span> Abish4i. Built with HTML, CSS and a little JS.</div>
+    </footer>
+  </main>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fetch public repos for the user and render a simple list
+    (async function loadRepos(){
+      const container = document.getElementById('repos');
+      const user = 'Abish4i';
+      const api = `https://api.github.com/users/${user}/repos?sort=updated&per_page=8`;
+      try{
+        const r = await fetch(api, { headers: { accept: 'application/vnd.github.v3+json' }});
+        if(!r.ok) throw new Error('GitHub API error: ' + r.status);
+        const repos = await r.json();
+        if(!Array.isArray(repos) || repos.length === 0){
+          container.innerHTML = '<div class="muted">No public repositories found.</div>';
+          return;
+        }
+        container.innerHTML = '';
+        repos.forEach(repo => {
+          const el = document.createElement('div');
+          el.className = 'project';
+          el.innerHTML = `
+            <div class="left">
+              <h3 title="${escapeHtml(repo.name)}">${escapeHtml(repo.name)}</h3>
+              <p>${escapeHtml(repo.description || repo.language || '')}</p>
+            </div>
+            <div style="text-align:right;">
+              <a class="chip" href="${repo.html_url}" target="_blank" rel="noopener">View</a>
+            </div>
+          `;
+          container.appendChild(el);
+        });
+      }catch(err){
+        console.warn(err);
+        container.innerHTML = '<div class="muted">Could not load repositories. Check browser console for details.</div>';
+      }
+    })();
+
+    // escape helpers
+    function escapeHtml(s){
+      return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});
+    }
+
+    // Prepare mailto from form (simple, uses GET to construct)
+    function prepareMailto(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const subject = encodeURIComponent(`Website message from ${name}`);
+      const body = encodeURIComponent(`From: ${name} <${email}>\n\n${message}\n\n— sent from abish4i.github.io`);
+      const mailto = `mailto:hello@abish.example?subject=${subject}&body=${body}`;
+
+      // open mail client
+      window.location.href = mailto;
+      return false;
+    }
+  </script>
+</body>
+</html>
