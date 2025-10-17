@@ -97,6 +97,7 @@ p.lead {
 }
 
 .card {
+    position: relative;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
     border-radius: var(--radius);
     padding: 18px;
@@ -139,20 +140,21 @@ p.lead {
 }
 
 .projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
     margin-top: 10px;
 }
 
 .project {
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.015), transparent);
-    padding: 12px;
-    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.03);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    gap: 12px;
-    align-items: center;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
