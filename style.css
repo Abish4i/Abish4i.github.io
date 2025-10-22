@@ -1,0 +1,465 @@
+:root {
+    --bg: #0f1724;
+    --card: #0b1220;
+    --muted: #9aa4b2;
+    --accent: #6ee7b7;
+    --glass: rgba(255, 255, 255, 0.03);
+    --radius: 14px;
+    color-scheme: dark;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    scroll-behavior: smooth;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    color: #e6eef6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #000;
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+body.home {
+    background-image: url('https://raw.githubusercontent.com/Abish4i/Abish4i.github.io/main/city.webp');
+}
+
+body.portfolio {
+    background-image: url('https://raw.githubusercontent.com/Abish4i/Abish4i.github.io/main/project.webp');
+}
+
+body.resume {
+    background-image: url('https://raw.githubusercontent.com/Abish4i/Abish4i.github.io/main/resume.webp');
+}
+
+body.contact {
+    background-image: url('https://raw.githubusercontent.com/Abish4i/Abish4i.github.io/main/contact.webp');
+    background-position: center;
+    background-size: cover;
+}
+
+body.blog {
+    background-image: url('https://raw.githubusercontent.com/Abish4i/Abish4i.github.io/main/blog.webp');
+}
+
+.container {
+  position: relative;
+}
+
+.topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 20px;
+}
+
+.wrap {
+    max-width: 980px;
+    margin: 48px auto;
+    padding: 28px;
+}
+
+header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 22px;
+    background-color: #000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+}
+
+.header-container {
+    height: 150px; /* Adjust this value to control the visible height of the header */
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.header-gif {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+main.wrap {
+    padding-top: 1rem;
+}
+
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 18px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--accent);
+}
+
+h1 {
+    margin: 0;
+    font-size: 22px;
+    margin-top: 0;
+}
+
+p.lead {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.card {
+    position: relative;
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.muted {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.btn {
+    background: var(--glass);
+    color: var(--accent);
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+.btn.secondary {
+    color: var(--muted);
+    border-style: dashed;
+}
+
+.projects-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 10px;
+}
+
+.project {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(2, 6, 23, 0.7);
+}
+
+.project .left {
+    overflow: hidden;
+}
+
+.project h3 {
+    margin: 0;
+    font-size: 15px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.project p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.socials {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.chip {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--muted);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    text-decoration: none;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    background: transparent;
+    color: inherit;
+    font-size: 14px;
+    resize: vertical;
+}
+
+label {
+    font-size: 13px;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.gravatar-hovercard__buttons {
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: center;     /* center vertically if height is set */
+  height: 100px;           /* optional, to give some height */
+  border: 2px solid #000;  /* box border */
+  padding: 10px;           /* spacing inside box */
+  box-sizing: border-box;  /* include padding and border in size */
+  background-color: #f8f8f8; /* light background for box */
+}
+
+.gravatar-hovercard__button {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: 0070ba; /* PayPal blue */
+  border-radius: 5px;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.menu-icon {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-icon span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+}
+
+@media (max-width: 880px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-icon {
+        display: flex;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .avatar {
+        width: 68px;
+        height: 68px;
+        font-size: 24px;
+        border-radius: 12px;
+    }
+
+    nav {
+        margin-top: 12px;
+    }
+}
+
+.note {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* Resume page specific styles */
+.resume-header {
+    position: relative;
+    padding-bottom: 18px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--glass);
+    text-align: center;;
+}
+
+.resume-photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(2, 6, 23, 0.5);
+    border: 1px solid var(--glass);
+}
+
+.resume-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resume-container h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.resume-container p {
+    color: var(--muted);
+}
+
+.resume-section {
+    margin-bottom: 22px;
+}
+
+.resume-section h2 {
+    font-size: 18px;
+    color: var(--accent);
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--glass);
+    padding-bottom: 8px;
+}
+
+.skills-categories > div {
+    margin-bottom: 8px;
+}
+
+.resume-page .card {
+    padding: 28px;
+}
+
+.resume-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resume-section li {
+    margin-bottom: 12px;
+}
+
+.resume-section strong {
+    color: #e6eef6;
+}
+
+.resume-section span {
+    color: var(--muted);
+}
+
+.resume-section a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.resume-section a:hover {
+    text-decoration: underline;
+}
+
+body.resume .card.resume-page {
+    background: var(--card);
+}
+
+.gravatar-hovercard__drawer {
+    display: none;
+}
+
+.gravatar-hovercard__drawer.is-open {
+    display: block;
+}
