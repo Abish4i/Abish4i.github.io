@@ -69,12 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function getRandomWord(category) {
         const words = wordCategories[category];
         return words[Math.floor(Math.random() * words.length)];
-    }
-    
-    function capitalizeWords(str) {
-                return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-    }
-            
+    }    
 
     function updateSubtitle() {
         const subtitleElement = document.querySelector('.lead');
@@ -94,12 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (document.body.classList.contains('blog')) {
         const blogPostsContainer = document.getElementById('blog-posts');
-        blogPostsContainer.innerHTML = '<p>Loading posts...</p>';
+        blogPostsContainer.innerHTML = '<p>Fetching posts...xD</p>';
 
         fetch('https://public-api.wordpress.com/rest/v1.1/sites/inknowhere.wordpress.com/posts/?fields=URL,title,excerpt,featured_image')
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Network response was not o🤐 ok ok o😶‍🌫️ ok ok *x* 😵');
                 }
                 return response.json();
             })
@@ -143,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Error fetching blog posts:', error);
-                blogPostsContainer.innerHTML = '<p>Failed to load posts. Please try again later.</p>';
+                blogPostsContainer.innerHTML = '<p>Failed to load posts. Visit blog directly please.</p>';
             });
         }
 });
