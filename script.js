@@ -56,6 +56,36 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         })
         .catch(error => console.error('Error fetching header:', error));
+
+    const wordCategories = {
+        'X-Intelligence-Qualities': ['analytical_thinking', 'problem_solving', 'critical_reasoning', 'quick_learning', 'pattern_recognition', 'logical_deduction', 'strategic_planning'],
+        'X-Humor-Qualities': ['playful', 'storytelling'],
+        'X-Hobbies': ['reading', 'gaming', 'tech'],
+        'X-Gaming-Genres': ['strategy_games', 'puzzle_games', 'racing_games', 'adventure', 'MMORPG'],
+        'X-Tech-Areas': ['programming', 'AI_ML', 'web_development'],
+        'X-Personality-Traits': ['curious', 'generalist', 'humorous', 'tech_savvy']
+    };
+
+    function getRandomWord(category) {
+        const words = wordCategories[category];
+        return words[Math.floor(Math.random() * words.length)];
+    }
+
+    function updateSubtitle() {
+        const subtitleElement = document.querySelector('.lead');
+        if (subtitleElement) {
+            const categories = Object.keys(wordCategories);
+            // Shuffle categories to get a random mix
+            const shuffledCategories = categories.sort(() => 0.5 - Math.random());
+            const selectedCategories = shuffledCategories.slice(0, 3);
+            const newSubtitle = selectedCategories.map(category => getRandomWord(category)).join(', ');
+            subtitleElement.textContent = newSubtitle;
+        }
+    }
+
+    // Update the subtitle every 60 seconds
+    setInterval(updateSubtitle, 60000);
+
     if (document.body.classList.contains('blog')) {
         const blogPostsContainer = document.getElementById('blog-posts');
         blogPostsContainer.innerHTML = '<p>Loading posts...</p>';
