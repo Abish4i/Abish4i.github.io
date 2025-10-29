@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.opacity = 1;
 
             const audio = new Audio('audio.mp3');
-            audio.volume = 0.5;
+            audio.volume = 0.3;
 
             const headerElements = document.querySelectorAll('header a, header button');
             headerElements.forEach(el => {
@@ -58,11 +58,11 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching header:', error));
 
     const wordCategories = {
-        'X-Intelligence-Qualities': ['analytical_thinking', 'problem_solving', 'critical_reasoning', 'quick_learning', 'pattern_recognition', 'logical_deduction', 'strategic_planning'],
+        'X-Intelligence-Qualities': ['analytical thinking', 'problem solving', 'critical reasoning', 'quick learning', 'trend-analysis', 'logical deduction', 'strategic planning'],
         'X-Humor-Qualities': ['playful', 'storytelling'],
         'X-Hobbies': ['reading', 'gaming', 'tech'],
-        'X-Gaming-Genres': ['strategy_games', 'puzzle_games', 'racing_games', 'adventure', 'MMORPG'],
-        'X-Tech-Areas': ['programming', 'AI_ML', 'web_development'],
+        'X-Gaming-Genres': ['strategy games', 'puzzle_games', 'racing games', 'adventure', 'MMORPG'],
+        'X-Tech-Areas': ['programming', 'AI/ML', 'web development'],
         'X-Personality-Traits': ['curious', 'generalist', 'humorous', 'tech_savvy']
     };
 
@@ -70,6 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const words = wordCategories[category];
         return words[Math.floor(Math.random() * words.length)];
     }
+    
+    function capitalizeWords(str) {
+                return str.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    }
+            
 
     function updateSubtitle() {
         const subtitleElement = document.querySelector('.lead');
@@ -84,8 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Update the subtitle every 60 seconds
-    setInterval(updateSubtitle, 60000);
+    // Update the sub head every 5 seconds
+    setInterval(updateSubtitle, 5000);
 
     if (document.body.classList.contains('blog')) {
         const blogPostsContainer = document.getElementById('blog-posts');
