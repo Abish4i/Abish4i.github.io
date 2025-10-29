@@ -58,12 +58,12 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error fetching header:', error));
 
     const wordCategories = {
-        'X-Intelligence-Qualities': ['analytical thinking', 'problem solving', 'critical reasoning', 'quick learning', 'trend-analysis', 'logical deduction', 'strategic planning'],
-        'X-Humor-Qualities': ['playful', 'storytelling'],
-        'X-Hobbies': ['reading', 'gaming', 'tech'],
-        'X-Gaming-Genres': ['strategy games', 'puzzle_games', 'racing games', 'adventure', 'MMORPG'],
-        'X-Tech-Areas': ['programming', 'AI/ML', 'web development'],
-        'X-Personality-Traits': ['curious', 'generalist', 'humorous', 'tech_savvy']
+    'X-Intelligence-Qualities': ['Analytical Thinking', 'Problem Solving', 'Critical Reasoning', 'Quick Learning', 'Trend-Analysis', 'Logical Deduction', 'Strategic Planning'],
+    'X-Humor-Qualities': ['Playful', 'Storytelling'],
+    'X-Hobbies': ['Reading', 'Gaming', 'Tech'],
+    'X-Gaming-Genres': ['Strategic', 'Puzzles', 'Racing', 'Adventure', 'MMORPG'],
+    'X-Tech-Areas': ['Programming', 'AI/ML', 'Web Development'],
+    'X-Personality-Traits': ['Curious', 'Generalist', 'Funny', 'Tech Savvy']
     };
 
     function getRandomWord(category) {
@@ -89,8 +89,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Update the sub head every 5 seconds
-    setInterval(updateSubtitle, 5000);
+    // Update the sub head every 10 seconds
+    setInterval(updateSubtitle, 10000);
 
     if (document.body.classList.contains('blog')) {
         const blogPostsContainer = document.getElementById('blog-posts');
