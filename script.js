@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const selectedCategories = shuffledCategories.slice(0, 3);
             const newSubtitle = selectedCategories.map(category => getRandomWord(category)).join(', ');
             subtitleElement.textContent = newSubtitle;
+            subtitleElement.className = 'lead ' + selectedCategories.join(' ');
         }
     }
 
