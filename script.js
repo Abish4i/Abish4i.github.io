@@ -108,32 +108,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let quotesData = [];
 
-    function parseCSV(csv) {
-        const lines = csv.split('\n');
-        const result = [];
-        const headers = lines[0].split(',').map(header => header.trim());
-        const quoteIndex = headers.indexOf('Quote');
-        const authorIndex = headers.indexOf('Author');
+function parseModifiedCSV(csv) {
+    const lines = csv.trim().split('
+'); // Split by new line and trim
+    const result = [];
 
-        for (let i = 1; i < lines.length; i++) {
-            const line = lines[i];
-            const parts = line.split('","');
-            if (parts.length >= 2) {
-                const quote = parts[0].replace(/"/g, '').trim();
-                const author = parts[1].replace(/"/g, '').trim();
-                if (quote && author) {
-                    result.push({ quote, author });
-                }
+    // Extract headers
+    const headers = lines[0].split(',').map(header => header.trim().replace(/^"|"$/g, ''));
+
+    // Find indices for Author and Quote columns (should be 0 and 1 in modified CSV)
+    const authorIndex = headers.indexOf('Author');
+    const quoteIndex = headers.indexOf('Quote');
+
+    for (let i = 1; i < lines.length; i++) {
+        // Split line by comma respecting quoted commas using regex
+        const parts = lines[i].match(/(".*?"|[^",]+)(?=s*,|s*$)/g);
+
+        if (parts && parts.length >= 2) {
+            const author = parts[authorIndex].replace(/^"|"$/g, '').trim();
+            const quote = parts[quoteIndex].replace(/^"|"$/g, '').trim();
+
+            if (author && quote) {
+                result.push({ author, quote });
             }
         }
-        return result;
     }
+    return result;
+}
 
     function loadQuotes() {
         fetch('quotes_author.csv')
             .then(response => response.text())
             .then(csv => {
-                quotesData = parseCSV(csv);
+                quotesData = parseModifiedCSV(csv);
                 showRandomQuote(); // Display a quote immediately after loading
 
                 // Refresh quote every 5 seconds
@@ -212,4 +219,5 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 });
-                                                                                
+
+                    
