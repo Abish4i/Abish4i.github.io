@@ -79,16 +79,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const shuffledCategories = categories.sort(() => 0.5 - Math.random());
             const selectedCategories = shuffledCategories.slice(0, 3);
             const newSubtitle = selectedCategories.map(category => getRandomWord(category)).join(', ');
-            subtitleElement.textContent = newSubtitle;
-            subtitleElement.className = 'lead ' + selectedCategories.join(' ');
+            
+            const gameTags = ['puzzles', 'mmorpg', 'racing', 'playful', 'gaming', 'adventure', 'strategic'];
+            const subtitleWords = newSubtitle.toLowerCase().split(', ');
+            const shouldBeClickable = subtitleWords.some(word => gameTags.includes(word.replace(/,/g, '')));
 
-            const gameLink = document.querySelector('h1 a.chip');
-            if (gameLink) {
-                const gameTags = ['puzzles', 'mmorpg', 'racing', 'playful'];
-                const subtitleWords = newSubtitle.toLowerCase().split(', ');
-                const shouldShowLink = subtitleWords.some(word => gameTags.includes(word));
-                gameLink.style.display = shouldShowLink ? 'inline' : 'none';
+            if (shouldBeClickable) {
+                subtitleElement.innerHTML = `<a href="games.html" style="text-decoration: none; color: inherit;">${newSubtitle}</a>`;
+            } else {
+                subtitleElement.textContent = newSubtitle;
             }
+
+            subtitleElement.className = 'lead ' + selectedCategories.join(' ');
         }
     }
 
@@ -104,6 +106,112 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error fetching footer:', error));
 
+    let quotesData = [];
+
+    function parseCSV(csv) {
+        const lines = csv.split('\n');
+        const result = [];
+        const headers = lines[0].split(',');
+        const quoteIndex = headers.indexOf('Quote');
+        const authorIndex = headers.indexOf('Author');
+
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i];
+            const parts = line.split(',');
+            if (parts.length > Math.max(quoteIndex, authorIndex)) {
+                const quote = parts[quoteIndex].trim();
+                const author = parts[authorIndex].trim();
+                if (quote && author) {
+                    result.push({ quote: quote.replace(/"/g, ''), author: author.replace(/"/g, '') });
+                }
+            }
+        }
+        return result;
+    }
+
+    function loadQuotes() {
+        fetch('quotes_author.csv')
+            .then(response => response.text())
+            .then(csv => {
+                quotesData = parseCSV(csv);
+                showRandomQuote(); // Display a quote immediately after loading
+                
+                // Refresh quote every 10 seconds
+                setInterval(showRandomQuote, 10000);
+
+                // Add click listener to refresh quote
+                const quoteDisplay = document.getElementById('quoteDisplay');
+                quoteDisplay.style.cursor = 'pointer';
+                quoteDisplay.addEventListener('click', showRandomQuote);
+            })
+            .catch(error => console.error('Error fetching quotes:', error));
+    }
+
+    window.showRandomQuote = function() {
+      if (quotesData.length === 0) {
+        document.getElementById('quoteDisplay').textContent = 'No quotes loaded.';
+        return;
+      }
+      const randomIndex = Math.floor(Math.random() * quotesData.length);
+      const quote = quotesData[randomIndex];
+      document.getElementById('quoteDisplay').textContent = `${quote.quote} - ${quote.author}`;
+    }
+
+    if (document.body.classList.contains('blog')) {
+        const blogPostsContainer = document.getElementById('blog-posts');
+        blogPostsContainer.innerHTML = '<p>Fetching posts...xD</p>';
+
+        fetch('https://public-api.wordpress.com/rest/v1.1/sites/inknowhere.wordpress.com/posts/?fields=URL,title,excerpt,featured_image')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not o🤐 ok ok o😶‍🌫️ ok ok *x* 😵');
+                }
+                return response.json();
+            })
+            .then(data => {
+                blogPostsContainer.innerHTML = ''; // Clear loading message
+                const posts = data.posts;
+                if (posts && posts.length > 0) {
+                    const projectsList = document.createElement('div');
+                    projectsList.className = 'projects-list';
+
+                    posts.forEach(post => {
+                        const postElement = document.createElement('a');
+                        postElement.href = post.URL;
+                        postElement.classList.add('project', 'card');
+                        postElement.style.textDecoration = 'none';
+                        postElement.style.color = 'inherit';
+                        postElement.target = '_blank';
+                        postElement.rel = 'noopener noreferrer';
+
+                        let imageHTML = '';
+                        if (post.featured_image) {
+                            imageHTML = `<img src="${post.featured_image}" alt="" style="width: 100%; height: auto; display: block; margin-bottom: 1em; border-radius: 5px;">`;
+                        }
+
+                        postElement.innerHTML = `
+                            ${imageHTML}
+                            <div class="left">
+                                <h3 style="margin-top:0;">${post.title}</h3>
+                                <div class="muted">${post.excerpt}</div>
+                            </div>
+                            <div style="text-align:right; margin-top: 1em;">
+                                <span class="chip">Read More</span>
+                            </div>
+                        `;
+                        projectsList.appendChild(postElement);
+                    });
+                    blogPostsContainer.appendChild(projectsList);
+                } else {
+                    blogPostsContainer.innerHTML = '<p>No posts found.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching blog posts:', error);
+                blogPostsContainer.innerHTML = '<p>Failed to load posts. Visit blog directly please.</p>';
+            });
+        }
+});
     let quotesData = [];
 
     function parseCSV(csv) {
