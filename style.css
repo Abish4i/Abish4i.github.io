@@ -28,6 +28,20 @@ body {
     animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
+    padding-bottom: 50px; /* Add padding to prevent content from being hidden by the footer */
+}
+
+#footer-placeholder {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: to make the footer background semi-transparent */
+    color: white;
+    z-index: 1000;
 }
 
 @keyframes fadeInAnimation {

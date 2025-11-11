@@ -79,16 +79,18 @@ document.addEventListener('DOMContentLoaded', function() {
             const shuffledCategories = categories.sort(() => 0.5 - Math.random());
             const selectedCategories = shuffledCategories.slice(0, 3);
             const newSubtitle = selectedCategories.map(category => getRandomWord(category)).join(', ');
-            subtitleElement.textContent = newSubtitle;
-            subtitleElement.className = 'lead ' + selectedCategories.join(' ');
 
-            const gameLink = document.querySelector('h1 a.chip');
-            if (gameLink) {
-                const gameTags = ['puzzles', 'mmorpg', 'racing', 'playful'];
-                const subtitleWords = newSubtitle.toLowerCase().split(', ');
-                const shouldShowLink = subtitleWords.some(word => gameTags.includes(word));
-                gameLink.style.display = shouldShowLink ? 'inline' : 'none';
+            const gameTags = ['puzzles', 'mmorpg', 'racing', 'playful', 'gaming', 'adventure', 'strategic'];
+            const subtitleWords = newSubtitle.toLowerCase().split(', ');
+            const shouldBeClickable = subtitleWords.some(word => gameTags.includes(word.replace(/,/g, '')));
+
+            if (shouldBeClickable) {
+                subtitleElement.innerHTML = `<a href="games.html" style="text-decoration: none; color: inherit;">${newSubtitle}</a>`;
+            } else {
+                subtitleElement.textContent = newSubtitle;
             }
+
+            subtitleElement.className = 'lead ' + selectedCategories.join(' ');
         }
     }
 
@@ -133,6 +135,14 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(csv => {
                 quotesData = parseCSV(csv);
                 showRandomQuote(); // Display a quote immediately after loading
+
+                // Refresh quote every 10 seconds
+                setInterval(showRandomQuote, 10000);
+
+                // Add click listener to refresh quote
+                const quoteDisplay = document.getElementById('quoteDisplay');
+                quoteDisplay.style.cursor = 'pointer';
+                quoteDisplay.addEventListener('click', showRandomQuote);
             })
             .catch(error => console.error('Error fetching quotes:', error));
     }
