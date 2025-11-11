@@ -57,14 +57,114 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(error => console.error('Error fetching header:', error));
 
+    const wordCategories = {
+    'X-Intelligence-Qualities': ['Analytical Thinking', 'Problem Solving', 'Critical Reasoning', 'Quick Learning', 'Trend-Analysis', 'Logical Deduction', 'Strategic Planning'],
+    'X-Humor-Qualities': ['Playful', 'Storytelling'],
+    'X-Hobbies': ['Reading', 'Gaming', 'Tech'],
+    'X-Gaming-Genres': ['Strategic', 'Puzzles', 'Racing', 'Adventure', 'MMORPG'],
+    'X-Tech-Areas': ['Programming', 'AI/ML', 'Web Development'],
+    'X-Personality-Traits': ['Curious', 'Generalist', 'Funny', 'Tech Savvy']
+    };
+
+    function getRandomWord(category) {
+        const words = wordCategories[category];
+        return words[Math.floor(Math.random() * words.length)];
+    }    
+
+    function updateSubtitle() {
+        const subtitleElement = document.querySelector('.lead');
+        if (subtitleElement) {
+            const categories = Object.keys(wordCategories);
+            // Shuffle categories to get a random mix
+            const shuffledCategories = categories.sort(() => 0.5 - Math.random());
+            const selectedCategories = shuffledCategories.slice(0, 3);
+            const newSubtitle = selectedCategories.map(category => getRandomWord(category)).join(', ');
+
+            const gameTags = ['puzzles', 'mmorpg', 'racing', 'playful', 'gaming', 'adventure', 'strategic'];
+            const subtitleWords = newSubtitle.toLowerCase().split(', ');
+            const shouldBeClickable = subtitleWords.some(word => gameTags.includes(word.replace(/,/g, '')));
+
+            if (shouldBeClickable) {
+                subtitleElement.innerHTML = `<a href="games.html" style="text-decoration: none; color: inherit;">${newSubtitle}</a>`;
+            } else {
+                subtitleElement.textContent = newSubtitle;
+            }
+
+            subtitleElement.className = 'lead ' + selectedCategories.join(' ');
+        }
+    }
+
+    // Update the sub head every 10 seconds
+    setInterval(updateSubtitle, 10000);
+
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+            // Fetch and display a random quote once the footer is loaded
+            loadQuotes();
+        })
+        .catch(error => console.error('Error fetching footer:', error));
+
+    let quotesData = [];
+
+    function parseCSV(csv) {
+        const lines = csv.split('\n');
+        const result = [];
+        const headers = lines[0].split(',').map(header => header.trim());
+        const quoteIndex = headers.indexOf('Quote');
+        const authorIndex = headers.indexOf('Author');
+
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i];
+            const parts = line.split('","');
+            if (parts.length >= 2) {
+                const quote = parts[0].replace(/"/g, '').trim();
+                const author = parts[1].replace(/"/g, '').trim();
+                if (quote && author) {
+                    result.push({ quote, author });
+                }
+            }
+        }
+        return result;
+    }
+
+    function loadQuotes() {
+        fetch('quotes_author.csv')
+            .then(response => response.text())
+            .then(csv => {
+                quotesData = parseCSV(csv);
+                showRandomQuote(); // Display a quote immediately after loading
+
+                // Refresh quote every 5 seconds
+                setInterval(showRandomQuote, 5000);
+
+                // Add click listener to refresh quote
+                const quoteDisplay = document.getElementById('quoteDisplay');
+                quoteDisplay.style.cursor = 'pointer';
+                quoteDisplay.addEventListener('click', showRandomQuote);
+            })
+            .catch(error => console.error('Error fetching quotes:', error));
+    }
+
+    window.showRandomQuote = function() {
+      if (quotesData.length === 0) {
+        document.getElementById('quoteDisplay').textContent = 'No quotes loaded.';
+        return;
+      }
+      const randomIndex = Math.floor(Math.random() * quotesData.length);
+      const quote = quotesData[randomIndex];
+      document.getElementById('quoteDisplay').textContent = `${quote.quote} - ${quote.author}`;
+    }
+
     if (document.body.classList.contains('blog')) {
         const blogPostsContainer = document.getElementById('blog-posts');
-        blogPostsContainer.innerHTML = '<p>Loading posts...</p>';
+        blogPostsContainer.innerHTML = '<p>Fetching posts...xD</p>';
 
         fetch('https://public-api.wordpress.com/rest/v1.1/sites/inknowhere.wordpress.com/posts/?fields=URL,title,excerpt,featured_image')
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Network response was not o🤐 ok ok o😶‍🌫️ ok ok *x* 😵');
                 }
                 return response.json();
             })
@@ -108,7 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Error fetching blog posts:', error);
-                blogPostsContainer.innerHTML = '<p>Failed to load posts. Please try again later.</p>';
+                blogPostsContainer.innerHTML = '<p>Failed to load posts. Visit blog directly please.</p>';
             });
-    }
+        }
 });
+                                                                                
