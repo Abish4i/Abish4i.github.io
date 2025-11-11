@@ -136,8 +136,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 quotesData = parseCSV(csv);
                 showRandomQuote(); // Display a quote immediately after loading
 
-                // Refresh quote every 10 seconds
-                setInterval(showRandomQuote, 10000);
+                // Refresh quote every 5 seconds
+                setInterval(showRandomQuote, 5000);
 
                 // Add click listener to refresh quote
                 const quoteDisplay = document.getElementById('quoteDisplay');
