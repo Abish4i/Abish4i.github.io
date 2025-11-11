@@ -56,4 +56,59 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         })
         .catch(error => console.error('Error fetching header:', error));
+
+    if (document.body.classList.contains('blog')) {
+        const blogPostsContainer = document.getElementById('blog-posts');
+        blogPostsContainer.innerHTML = '<p>Loading posts...</p>';
+
+        fetch('https://public-api.wordpress.com/rest/v1.1/sites/inknowhere.wordpress.com/posts/?fields=URL,title,excerpt,featured_image')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                blogPostsContainer.innerHTML = ''; // Clear loading message
+                const posts = data.posts;
+                if (posts && posts.length > 0) {
+                    const projectsList = document.createElement('div');
+                    projectsList.className = 'projects-list';
+
+                    posts.forEach(post => {
+                        const postElement = document.createElement('a');
+                        postElement.href = post.URL;
+                        postElement.classList.add('project', 'card');
+                        postElement.style.textDecoration = 'none';
+                        postElement.style.color = 'inherit';
+                        postElement.target = '_blank';
+                        postElement.rel = 'noopener noreferrer';
+
+                        let imageHTML = '';
+                        if (post.featured_image) {
+                            imageHTML = `<img src="${post.featured_image}" alt="" style="width: 100%; height: auto; display: block; margin-bottom: 1em; border-radius: 5px;">`;
+                        }
+
+                        postElement.innerHTML = `
+                            ${imageHTML}
+                            <div class="left">
+                                <h3 style="margin-top:0;">${post.title}</h3>
+                                <div class="muted">${post.excerpt}</div>
+                            </div>
+                            <div style="text-align:right; margin-top: 1em;">
+                                <span class="chip">Read More</span>
+                            </div>
+                        `;
+                        projectsList.appendChild(postElement);
+                    });
+                    blogPostsContainer.appendChild(projectsList);
+                } else {
+                    blogPostsContainer.innerHTML = '<p>No posts found.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching blog posts:', error);
+                blogPostsContainer.innerHTML = '<p>Failed to load posts. Please try again later.</p>';
+            });
+    }
 });
