@@ -81,11 +81,71 @@ document.addEventListener('DOMContentLoaded', function() {
             const newSubtitle = selectedCategories.map(category => getRandomWord(category)).join(', ');
             subtitleElement.textContent = newSubtitle;
             subtitleElement.className = 'lead ' + selectedCategories.join(' ');
+
+            const gameLink = document.querySelector('h1 a.chip');
+            if (gameLink) {
+                const gameTags = ['puzzles', 'mmorpg', 'racing', 'playful'];
+                const subtitleWords = newSubtitle.toLowerCase().split(', ');
+                const shouldShowLink = subtitleWords.some(word => gameTags.includes(word));
+                gameLink.style.display = shouldShowLink ? 'inline' : 'none';
+            }
         }
     }
 
     // Update the sub head every 10 seconds
     setInterval(updateSubtitle, 10000);
+
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+            // Fetch and display a random quote once the footer is loaded
+            loadQuotes();
+        })
+        .catch(error => console.error('Error fetching footer:', error));
+
+    let quotesData = [];
+
+    function parseCSV(csv) {
+        const lines = csv.split('\n');
+        const result = [];
+        const headers = lines[0].split(',');
+        const quoteIndex = headers.indexOf('Quote');
+        const authorIndex = headers.indexOf('Author');
+
+        for (let i = 1; i < lines.length; i++) {
+            const line = lines[i];
+            const parts = line.split(',');
+            if (parts.length > Math.max(quoteIndex, authorIndex)) {
+                const quote = parts[quoteIndex].trim();
+                const author = parts[authorIndex].trim();
+                if (quote && author) {
+                    result.push({ quote: quote.replace(/"/g, ''), author: author.replace(/"/g, '') });
+                }
+            }
+        }
+        return result;
+    }
+
+    function loadQuotes() {
+        fetch('quotes_author.csv')
+            .then(response => response.text())
+            .then(csv => {
+                quotesData = parseCSV(csv);
+                showRandomQuote(); // Display a quote immediately after loading
+            })
+            .catch(error => console.error('Error fetching quotes:', error));
+    }
+
+    window.showRandomQuote = function() {
+      if (quotesData.length === 0) {
+        document.getElementById('quoteDisplay').textContent = 'No quotes loaded.';
+        return;
+      }
+      const randomIndex = Math.floor(Math.random() * quotesData.length);
+      const quote = quotesData[randomIndex];
+      document.getElementById('quoteDisplay').textContent = `${quote.quote} - ${quote.author}`;
+    }
 
     if (document.body.classList.contains('blog')) {
         const blogPostsContainer = document.getElementById('blog-posts');
