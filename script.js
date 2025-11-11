@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.opacity = 1;
 
             const audio = new Audio('audio.mp3');
-            audio.volume = 0.5;
+            audio.volume = 0.3;
 
             const headerElements = document.querySelectorAll('header a, header button');
             headerElements.forEach(el => {
