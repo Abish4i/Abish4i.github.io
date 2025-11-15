@@ -1,0 +1,49 @@
+About Me
+
+   An enthusiast for continuous learning, I thrive on exploring new ideas
+   and perspectives. While finance and technology are my main areas of
+   focus, you'll often find me reading diverse recommendations, watching
+   films, or enjoying a stgame. I see myself as someone who enjoys
+   untangling problems creatively—whether it’s making sense of market
+   trends or breaking down complex challenges. What truly drives me is not
+   just figuring out how things work, but understanding why they work that
+   way.
+
+What I'm Working On Currently
+
+   Building finance and technology enabled solutions that actually solve
+   problems. Right now, I'm working on a few projects close to my heart:
+   an interactive analytics dashboard that turns complex data into clear
+   irrespective of data formats, actionable insights; a straightforward
+   price tracker in real-time market movements; and a C2C platform that's
+   rethinks P2P transactions through a credit-based implementation. Every
+   project gets the same care and attention as my first—because I believe
+   in creating practical, user-focused tools that use technology to tackle
+   real-world challenges.
+   [1]See projects [2]Contact
+
+Quick Info
+
+   Background: Equipped with expertise at the intersection of Finance,
+   Information Technology, and Mathematics. This unique combination equips
+   me to integrate analytical rigor and technical insight to inform sound
+   financial decision-making
+
+   Approach: My approach is centered on connecting insights across diverse
+   fields, leveraging mathematical frameworks and IT solutions to drive
+   operational efficiency and strategic outcomes
+
+   Philosophy: Continuous growth through experiential learning and
+   practical application.
+
+My Preferences
+
+   Actively pursuing opportunities within the IT and Finance sectors where
+   I can apply my hybrid skill set to contribute meaningfully. I am open
+   to both remote and onsite roles, ideally within innovative teams that
+   foster collaboration and support professional growth
+
+References
+
+   1. http://localhost:8000/portfolio.html
+   2. http://localhost:8000/contact.html

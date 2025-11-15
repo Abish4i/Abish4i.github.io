@@ -1,0 +1,71 @@
+   Abhishek
+
+Education
+
+     * M.Com (Statistics and Investments) | 2022
+       Analytics, Data Modeling, Econometrics, Hypothesis Testing,
+       Security Analysis & Investment Management, Official Statistics,
+       Strategic Management, MIS, Business Application of Statistics tools
+       and techniques, Probability Theory and Probability Distributions,
+       Statistical Inference, Time Series Analysis, Advanced Statistics
+     * Bachelor of Commerce (Accounting & Finance) | 2018
+     * IPCE, Chartered Accountant (Cost and Financial Management, Audit
+       and Assurance) (Exempted) | 2017
+     * Higher-Secondary (Commerce and Mathematics) | 2015
+     * High-School | 2013
+
+Skills
+
+   Applications: Power BI, MS Office, MySQL, Tableau, Adobe Illustrator,
+   Photoshop, VS Code
+   Languages: Python, R, MATLAB
+   Web Application: IBM Cloud Pak, IBM Cognos, Microsoft 365, Azure, GCP
+   Libraries: Pandas, OpenPyXL, Matplotlib, Seaborn, Yfinance,
+   BeautifulSoup, Quandl
+   Others: Project Management, Data Analytics, Financial Modelling,
+   Visualization
+
+Work Experience
+
+Data Science Intern
+
+   The SPARKS Foundation (Remote)
+     * EDA on specified datasets to generate insights and conclude
+       findings
+     * Used Python plotting libraries for visualizations
+     * Performed K-Means clustering and Linear Regression Models
+
+Video Editing Intern
+
+   Aasman Foundation | 2021
+     * Edited videos/images for social media campaigns (PR)
+     * Used Adobe Illustrator and Photoshop
+
+Assistant Intern
+
+   APMK & Associates | 2019
+     * Filed income tax returns with custom office apps
+     * Analyzed financial statements for auditing
+     * Worked with CRM & DBMS
+
+Projects & Certifications
+
+   Certifications:
+     * Google Data Analyst Course (Python, Excel & R)
+     * IBM Data Analyst Course (IBM cloud services/APIs)
+     * IBM Data Analysis & Visualization (Excel, IBM Cognos dashboards)
+     * PwC Approach for DataViz (Excel, PowerPoint, Data Visualization)
+     * Power BI Desktop/Server (Dashboarding for insights)
+     * Python for Everybody Specialization
+     * SQL for Database Tables
+     * Adobe Photoshop CS6 for editing
+
+   Key Project:
+     * Created chatbot using IBM Discovery & Cloud Pak
+
+Volunteering
+
+Management Intern
+
+   Shri Sadguru Seva Sangh Trust, Chitrakoot, Satna
+     * Worked on sustainable development initiatives in healthcare
