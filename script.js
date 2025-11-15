@@ -79,17 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const shuffledCategories = categories.sort(() => 0.5 - Math.random());
             const selectedCategories = shuffledCategories.slice(0, 3);
             const newSubtitle = selectedCategories.map(category => getRandomWord(category)).join(', ');
-
-            const gameTags = ['puzzles', 'mmorpg', 'racing', 'playful', 'gaming', 'adventure', 'strategic'];
-            const subtitleWords = newSubtitle.toLowerCase().split(', ');
-            const shouldBeClickable = subtitleWords.some(word => gameTags.includes(word.replace(/,/g, '')));
-
-            if (shouldBeClickable) {
-                subtitleElement.innerHTML = `<a href="games.html" style="text-decoration: none; color: inherit;">${newSubtitle}</a>`;
-            } else {
-                subtitleElement.textContent = newSubtitle;
-            }
-
+            subtitleElement.textContent = newSubtitle;
             subtitleElement.className = 'lead ' + selectedCategories.join(' ');
         }
     }
