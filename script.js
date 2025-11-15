@@ -87,6 +87,73 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update the sub head every 10 seconds
     setInterval(updateSubtitle, 10000);
 
+    fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+            // Fetch and display a random quote once the footer is loaded
+            loadQuotes();
+        })
+        .catch(error => console.error('Error fetching footer:', error));
+
+    let quotesData = [];
+
+function parseModifiedCSV(csv) {
+    const lines = csv.trim().split('
+'); // Split by new line and trim
+    const result = [];
+
+    // Extract headers
+    const headers = lines[0].split(',').map(header => header.trim().replace(/^"|"$/g, ''));
+
+    // Find indices for Author and Quote columns (should be 0 and 1 in modified CSV)
+    const authorIndex = headers.indexOf('Author');
+    const quoteIndex = headers.indexOf('Quote');
+
+    for (let i = 1; i < lines.length; i++) {
+        // Split line by comma respecting quoted commas using regex
+        const parts = lines[i].match(/(".*?"|[^",]+)(?=s*,|s*$)/g);
+
+        if (parts && parts.length >= 2) {
+            const author = parts[authorIndex].replace(/^"|"$/g, '').trim();
+            const quote = parts[quoteIndex].replace(/^"|"$/g, '').trim();
+
+            if (author && quote) {
+                result.push({ author, quote });
+            }
+        }
+    }
+    return result;
+}
+
+    function loadQuotes() {
+        fetch('quotes_author.csv')
+            .then(response => response.text())
+            .then(csv => {
+                quotesData = parseModifiedCSV(csv);
+                showRandomQuote(); // Display a quote immediately after loading
+
+                // Refresh quote every 5 seconds
+                setInterval(showRandomQuote, 5000);
+
+                // Add click listener to refresh quote
+                const quoteDisplay = document.getElementById('quoteDisplay');
+                quoteDisplay.style.cursor = 'pointer';
+                quoteDisplay.addEventListener('click', showRandomQuote);
+            })
+            .catch(error => console.error('Error fetching quotes:', error));
+    }
+
+    window.showRandomQuote = function() {
+      if (quotesData.length === 0) {
+        document.getElementById('quoteDisplay').textContent = 'No quotes loaded.';
+        return;
+      }
+      const randomIndex = Math.floor(Math.random() * quotesData.length);
+      const quote = quotesData[randomIndex];
+      document.getElementById('quoteDisplay').textContent = `${quote.quote} - ${quote.author}`;
+    }
+
     if (document.body.classList.contains('blog')) {
         const blogPostsContainer = document.getElementById('blog-posts');
         blogPostsContainer.innerHTML = '<p>Fetching posts...xD</p>';
@@ -142,3 +209,5 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 });
+
+                    
